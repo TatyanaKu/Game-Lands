@@ -19,6 +19,7 @@ async def add_land(land: Land) -> Land:
        return land
     return JSONResponse(status_code=409, content={"message": "Conflict"})
 
+
 @app.get("/lands", summary='Возвращает список земель', response_model=list[Land])
 async def get_land_list() -> typing.Iterable[Land] :
     return [ v for k,v in lands.items() ]
