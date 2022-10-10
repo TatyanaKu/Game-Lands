@@ -25,4 +25,4 @@
 - удаляет землю из базы.
 
 Запуск
-uvicorn app:app --port 5000 --reload (запуск из папки cd land-managment)
+uvicorn app:app --port 5000 --reload (запуск из папки cd land-management)
