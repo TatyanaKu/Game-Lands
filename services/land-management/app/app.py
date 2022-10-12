@@ -15,9 +15,10 @@ lands: typing.Dict[int, Land] = {}
     summary='Добавляет землю игроку'
 )
 async def add_land(land: Land) -> Land:
-    if lands[land.id] in land:
-       return land
-    return JSONResponse(status_code=409, content={"message": "Conflict"})
+    if land.id in lands:
+        return JSONResponse(status_code=409, content={"message": "Conflict"})
+    lands[land.id] = land
+    return land
 
 
 @app.get("/lands", summary='Возвращает список земель', response_model=list[Land])
@@ -27,9 +28,11 @@ async def get_land_list() -> typing.Iterable[Land] :
 
 @app.put("/lands/{landId}", summary='Обновляет информацию о земле')
 async def update_land(landId: int, land: Land) -> Land :
-    if landId in lands:
-        return lands[landId]
-    return JSONResponse(status_code=404, content={"message": "Item not found"})
+    if landId not in lands:
+        return JSONResponse(status_code=404, content={"message": "Item not found"})
+    lands[landId] = land
+    return lands[landId]
+
 
 @app.delete("/lands/{landId}", summary='Удаляет землю из базы')
 async def delete_land(landId: int) -> Land :
