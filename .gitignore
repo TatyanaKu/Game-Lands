@@ -1,1 +1,7 @@
 **/__pycache__/*
+
+deploy/mongo/data/*
+!deploy/mongo/data/.gitkeep
+
+deploy/postgresql/data/*
+!deploy/postgresql/data/.gitkeep

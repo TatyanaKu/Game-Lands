@@ -1,0 +1,37 @@
+version: "2.0"
+volumes:
+  mongo-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: C:\Users\Tatyana\Desktop\deploy\mongo\data
+  postgresql-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: C:\Users\Tatyana\Desktop\deploy\postgresql\data
+services:
+  mongo:
+    image: mongo:6.0
+    volumes:
+      - mongo-data:/data/db
+      - C:\Users\Tatyana\Desktop\deploy\mongo\init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+    ports:
+      - "27017:27017"
+      - "27018:27018"
+      - "27019:27019"
+    environment:
+      - MONGO_INITDB_DATABASE=game-lands
+  postgresql:
+    image: postgres:12
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: game-lands
+      POSTGRES_USER: game-lands
+      POSTGRES_DB: game-lands
+      PGDATA: /var/lib/postgresql/data/db-files/
+    ports:
+      - 5432:5432
