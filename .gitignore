@@ -5,3 +5,5 @@ deploy/mongo/data/*
 
 deploy/postgresql/data/*
 !deploy/postgresql/data/.gitkeep
+
+services/land-management/venv/*
