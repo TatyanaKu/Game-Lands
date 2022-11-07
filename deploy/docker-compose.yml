@@ -5,19 +5,19 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: C:\Users\Tatyana\Desktop\deploy\mongo\data
+      device: C:\Users\Tatyana\Desktop\Game Lands\deploy\mongo\data
   postgresql-data:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: C:\Users\Tatyana\Desktop\deploy\postgresql\data
+      device: C:\Users\Tatyana\Desktop\Game Lands\deploy\postgresql\data
 services:
   mongo:
     image: mongo:6.0
     volumes:
       - mongo-data:/data/db
-      - C:\Users\Tatyana\Desktop\deploy\mongo\init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+      - C:\Users\Tatyana\Desktop\Game Lands\deploy\mongo\init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
     ports:
       - "27017:27017"
       - "27018:27018"
