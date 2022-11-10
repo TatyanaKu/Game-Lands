@@ -39,11 +39,13 @@ async def get_land_list(
 
 
 @app.put("/lands/{landId}", summary='Обновляет информацию о земле')
-async def update_land(landId: int, land: Land, db: Session = Depends(get_db)) -> Land :
+async def update_land(landId: int, land: LandIn, db: Session = Depends(get_db)) -> Land :
     land = crud.update_land(db, landId, land)
     if land != None:
         return land
     return JSONResponse(status_code=404, content={"message": "Item not found"})
+
+
 
 
 @app.delete("/lands/{landId}", summary='Удаляет землю из базы')
