@@ -2,11 +2,33 @@ from fastapi import FastAPI, Depends
 from fastapi.responses import JSONResponse
 from .schemas.land import Land, LandIn
 from sqlalchemy.orm import Session
-from .database import SessionLocal, engine, Base
-from . import crud
+from .schemas.command import Command, Scene
+from .database import DB_INITIALIZER
+from . import crud, config
 import typing
+import logging
+from fastapi.logger import logger
 
-Base.metadata.create_all(bind=engine)
+# setup logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    level=2,
+    format="%(levelname)-9s %(message)s"
+)
+
+# load config
+cfg: config.Config = config.load_config()
+
+logger.info(
+    'Service configuration loaded:\n' +
+    f'{cfg.json(by_alias=True, indent=4)}'
+)
+
+# init database
+logger.info('Initializing database...')
+SessionLocal = DB_INITIALIZER.init_database(cfg.postgres_dsn)
+
+
 
 app = FastAPI(
     version='0.0.1',
@@ -44,7 +66,6 @@ async def update_land(landId: int, land: LandIn, db: Session = Depends(get_db)) 
     if land != None:
         return land
     return JSONResponse(status_code=404, content={"message": "Item not found"})
-
 
 
 
