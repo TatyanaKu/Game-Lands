@@ -35,3 +35,12 @@ services:
       PGDATA: /var/lib/postgresql/data/db-files/
     ports:
       - 5432:5432
+
+  land-management-serivce:
+    image: game-lands/game-lands-service:0.0.2
+    ports:
+    - "5000:5000"
+    environment:
+      POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.2:5432/game-lands
+    
+ 

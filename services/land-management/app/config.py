@@ -6,17 +6,7 @@ class Config(BaseSettings):
         env='POSTGRES_DSN',
         alias='POSTGRES_DSN'
     )
-    int_example: int = Field(
-        default=5,
-        env='INT_EXAMPLE',
-        alias='INT_EXAMPLE'
-    )
-
-    bool_example: bool = Field(
-        default=False,
-        env='BOOL_EXAMPLE',
-        alias='BOOL_EXAMPLE'
-    )
+    
 
     class Config:
         env_file = ".env"
