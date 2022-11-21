@@ -2,7 +2,6 @@ from fastapi import FastAPI, Depends
 from fastapi.responses import JSONResponse
 from .schemas.land import Land, LandIn
 from sqlalchemy.orm import Session
-from .schemas.command import Command, Scene
 from .database import DB_INITIALIZER
 from . import crud, config
 import typing

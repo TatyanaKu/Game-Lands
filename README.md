@@ -24,5 +24,11 @@
 - обновляет информацию о земле; 
 - удаляет землю из базы.
 
-# Запуск
-uvicorn app:app --port 5000 --reload (запуск из папки cd land-management)
+# Запуск сервиса управления землями
+uvicorn app:app --port 5000 --reload (запуск из папки land-management)
+
+# Запуск сервиса управления ресурсами
+uvicorn app:app --port 5001 --reload (запуск из папки resource-management)
+
+# Запуск сервиса управления постройками
+uvicorn app:app --port 5002 --reload (запуск из папки build-management)

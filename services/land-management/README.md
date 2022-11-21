@@ -8,3 +8,18 @@
 | /lands/{landId}             | PUT    | Обновляет информацию о земле                              | Пользователь |
 | /lands/{landId}             | DELETE | Удаляет землю из базы                                     | Пользователь |
 | /lands/{landId}             | GET    | Возвращает информацию о земле                             | Пользователь |    
+
+
+# Запуск
+
+```bash
+uvicorn app:app --port 5000 --reload
+```
+
+# Документация
+
+После запуска доступна документация: http://127.0.0.1:5000/docs
+
+# Сборка образа
+```bash
+docker build -t game-lands/game-lands-service:0.0.0 .
