@@ -31,4 +31,4 @@ uvicorn app:app --port 5000 --reload (запуск из папки land-manageme
 uvicorn app:app --port 5001 --reload (запуск из папки resource-management)
 
 # Запуск сервиса управления постройками
-uvicorn app:app --port 5002 --reload (запуск из папки build-management)
+uvicorn app:app --port 5002 --reload (запуск из папки building-management)

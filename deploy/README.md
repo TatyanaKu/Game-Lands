@@ -1,6 +1,9 @@
+# В данной директории все необходимое для развертывания СУБД и сервисов
+
+
 # Запуск
 ```bash
-docker-compose up -d
+docker-compose up (из папки deploy)
 ```
 
 # Остановка
@@ -8,3 +11,7 @@ docker-compose up -d
 docker-compose stop
 ```
 
+# Описание контейнеров
+```bash
+docker image ls
+```
