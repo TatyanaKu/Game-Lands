@@ -12,3 +12,4 @@ class Building(Base):
     description = Column(String, default='')
     level = Column(Integer)
     type = Column(String)
+    landid = Column(Integer)

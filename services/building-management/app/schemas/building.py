@@ -7,7 +7,7 @@ class BuildingBase(BaseModel):
     description: Optional[str] = Field(title='Краткое описание постройки')
     level: int = Field(title='Уровень постройки')
     type: Optional[str] = Field(title='Тип постройки')
-    landID: Optional[int] = Field(title='Идентификатор земли на которой расположена постройка', default=None)
+    landid: Optional[int] = Field(title='Идентификатор земли на которой расположена постройка')
     
     class Config:
         orm_mode = True

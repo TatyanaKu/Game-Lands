@@ -28,7 +28,6 @@ logger.info('Initializing database...')
 SessionLocal = DB_INITIALIZER.init_database(cfg.postgres_dsn)
 
 
-
 app = FastAPI(
     version='0.0.1',
     title='Building Service'
@@ -48,6 +47,7 @@ def get_db():
 )
 async def add_building(building: BuildingIn, db: Session = Depends(get_db)) -> Building :
     return crud.create_building(db=db, building=building)
+   
 
 
 @app.get("/buildings", summary='Возвращает список построек', response_model=list[Building])
@@ -75,7 +75,7 @@ async def delete_building(buildingId: int, db: Session = Depends(get_db)) -> Bui
     return JSONResponse(status_code=404, content={"message": "Item not found"})
 
 
-@app.get("/buildings/{buildingId}", summary='Возвращает информацию о земле')
+@app.get("/buildings/{buildingId}", summary='Возвращает информацию о постройке')
 async def get_building_info(buildingId: int, db: Session = Depends(get_db)) -> Building :
     building = crud.get_building(db, buildingId)
     if building != None:

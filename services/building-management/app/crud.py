@@ -14,7 +14,7 @@ def create_building(
         description = building.description,
         level = building.level,
         type = building.type,
-        landID = building.landID
+        landid = building.landid
     )
     db.add(db_building)
     db.commit()
@@ -24,6 +24,7 @@ def create_building(
 def get_buildings(
         db: Session, skip: int = 0, limit: int = 100
     ) -> typing.List[models.Building]:
+
     '''
     Возвращает информацию
     '''
