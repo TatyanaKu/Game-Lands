@@ -1,0 +1,831 @@
+{
+"lands": {
+    "types": [
+      "Mountain",
+      "River",
+      "Forest",
+      "Steppe",
+      "Wasteland",
+      "Tableland",
+      "Salt-mine",
+      "Misty-land",
+      "Swamp",
+      "Iron-mine"
+    ],
+    "slots": {
+      "min": 0,
+      "max": 10
+    }
+  },
+  "buildings": {
+    "types": {
+      "Tower": {
+        "locales": {
+          "rus": "Башня"
+        },
+        "request_land_types": [
+          "Mountain",
+          "Steppe",
+          "Wasteland",
+          "Tableland",
+          "Misty-land"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "stone": 10,
+              "steel": 20
+            },
+            "production": {
+              "stone": 10,
+              "steel": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "stone": 20,
+              "steel": 30
+            },
+            "production": {
+              "stone": 20,
+              "steel": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "stone": 30,
+              "steel": 40
+            },
+            "production": {
+              "stone": 30,
+              "steel": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "stone": 40,
+              "steel": 50
+            },
+            "production": {
+              "stone": 40,
+              "steel": 40
+            }
+          }
+        }
+      },
+      "Windmill": {
+        "locales": {
+          "rus": "Мельница"
+        },
+        "request_land_types": [
+          "Mountain",
+          "River",
+          "Forest",
+          "Steppe",
+          "Wasteland",
+          "Tableland",
+          "Misty-land",
+          "Swamp"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "wood": 10,
+              "steel": 20
+            },
+            "production": {
+              "wood": 10,
+              "steel": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "wood": 20,
+              "steel": 30
+            },
+            "production": {
+              "wood": 20,
+              "steel": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "wood": 30,
+              "steel": 40
+            },
+            "production": {
+              "wood": 30,
+              "steel": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "wood": 40,
+              "steel": 50
+            },
+            "production": {
+              "wood": 40,
+              "steel": 40
+            }
+          }
+        }
+      },
+      "Church": {
+        "locales": {
+          "rus": "Церковь"
+        },
+        "request_land_types": [
+          "Mountain",
+          "River",
+          "Forest",
+          "Steppe",
+          "Wasteland",
+          "Tableland",
+          "Salt-mine",
+          "Misty-land",
+          "Swamp",
+          "Iron-mine"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "wood": 10,
+              "steel": 20,
+              "stone": 30
+            },
+            "production": {
+              "wood": 10,
+              "steel": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "wood": 20,
+              "steel": 30,
+              "stone": 40
+            },
+            "production": {
+              "wood": 20,
+              "steel": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "wood": 30,
+              "steel": 40,
+              "stone": 50
+            },
+            "production": {
+              "wood": 30,
+              "steel": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "wood": 40,
+              "steel": 50,
+              "stone": 60
+            },
+            "production": {
+              "wood": 40,
+              "steel": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Barrack": {
+        "locales": {
+          "rus": "Казарма"
+        },
+        "request_land_types": [
+          "Mountain",
+          "River",
+          "Forest",
+          "Steppe",
+          "Wasteland",
+          "Tableland",
+          "Salt-mine",
+          "Misty-land",
+          "Swamp",
+          "Iron-mine"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "wood": 10,
+              "steel": 20,
+              "stone": 30
+            },
+            "production": {
+              "wood": 10,
+              "steel": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "wood": 20,
+              "steel": 30,
+              "stone": 40
+            },
+            "production": {
+              "wood": 20,
+              "steel": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "wood": 30,
+              "steel": 40,
+              "stone": 50
+            },
+            "production": {
+              "wood": 30,
+              "steel": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "wood": 40,
+              "steel": 50,
+              "stone": 60
+            },
+            "production": {
+              "wood": 40,
+              "steel": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Farm": {
+        "locales": {
+          "rus": "Ферма"
+        },
+        "request_land_types": [
+          "River",
+          "Forest",
+          "Steppe",
+          "Tableland"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "wood": 10,
+              "stone": 20
+            },
+            "production": {
+              "wood": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "wood": 20,
+              "stone": 30
+            },
+            "production": {
+              "wood": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "wood": 30,
+              "stone": 40
+            },
+            "production": {
+              "wood": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "wood": 40,
+              "stone": 50
+            },
+            "production": {
+              "wood": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Source": {
+        "locales": {
+          "rus": "Источник"
+        },
+        "request_land_types": [
+          "Mountain",
+          "River",
+          "Forest",
+          "Steppe",
+          "Tableland",
+          "Salt-mine",
+          "Swamp",
+          "Iron-mine"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "stone": 10
+            },
+            "production": {
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "stone": 20
+            },
+            "production": {
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "stone": 30
+            },
+            "production": {
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "stone": 40
+            },
+            "production": {
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Manufactory": {
+        "locales": {
+          "rus": "Фабрика"
+        },
+        "request_land_types": [
+          "Mountain",
+          "River",
+          "Forest",
+          "Steppe",
+          "Tableland",
+          "Swamp"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "wood": 10,
+              "steel": 20,
+              "stone": 30
+            },
+            "production": {
+              "wood": 10,
+              "steel": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "wood": 20,
+              "steel": 30,
+              "stone": 40
+            },
+            "production": {
+              "wood": 20,
+              "steel": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "wood": 30,
+              "steel": 40,
+              "stone": 50
+            },
+            "production": {
+              "wood": 30,
+              "steel": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "wood": 40,
+              "steel": 50,
+              "stone": 60
+            },
+            "production": {
+              "wood": 40,
+              "steel": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Sawmill": {
+        "locales": {
+          "rus": "Лесопилка"
+        },
+        "request_land_types": [
+          "Mountain",
+          "River",
+          "Forest",
+          "Swamp"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "wood": 10,
+              "steel": 20,
+              "stone": 30
+            },
+            "production": {
+              "wood": 10,
+              "steel": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "wood": 20,
+              "steel": 30,
+              "stone": 40
+            },
+            "production": {
+              "wood": 20,
+              "steel": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "wood": 30,
+              "steel": 40,
+              "stone": 50
+            },
+            "production": {
+              "wood": 30,
+              "steel": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "wood": 40,
+              "steel": 50,
+              "stone": 60
+            },
+            "production": {
+              "wood": 40,
+              "steel": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Quarry": {
+        "locales": {
+          "rus": "Каменоломня"
+        },
+        "request_land_types": [
+          "Mountain",
+          "Iron-mine"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "steel": 10,
+              "stone": 20
+            },
+            "production": {
+              "steel": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "steel": 20,
+              "stone": 30
+            },
+            "production": {
+              "steel": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "steel": 30,
+              "stone": 40
+            },
+            "production": {
+              "steel": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "steel": 40,
+              "stone": 50
+            },
+            "production": {
+              "steel": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Shipbuilding": {
+        "locales": {
+          "rus": "Судостроение"
+        },
+        "request_land_types": [
+          "River"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "wood": 10,
+              "steel": 20
+            },
+            "production": {
+              "wood": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "wood": 20,
+              "steel": 30
+            },
+            "production": {
+              "wood": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "wood": 30,
+              "steel": 40
+            },
+            "production": {
+              "wood": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "wood": 40,
+              "steel": 50
+            },
+            "production": {
+              "wood": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Smeltery": {
+        "locales": {
+          "rus": "Плавильня"
+        },
+        "request_land_types": [
+          "Mountain",
+          "Iron-mine"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "steel": 10,
+              "stone": 20
+            },
+            "production": {
+              "steel": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "steel": 20,
+              "stone": 30
+            },
+            "production": {
+              "wood": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "steel": 30,
+              "stone": 40
+            },
+            "production": {
+              "wood": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "steel": 40,
+              "stone": 50
+            },
+            "production": {
+              "wood": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Crusher": {
+        "locales": {
+          "rus": "Дробильня"
+        },
+        "request_land_types": [
+          "Mountain",
+          "Salt-mine",
+          "Iron-mine"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "steel": 10,
+              "stone": 20
+            },
+            "production": {
+              "steel": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "steel": 20,
+              "stone": 30
+            },
+            "production": {
+              "steel": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "steel": 30,
+              "stone": 40
+            },
+            "production": {
+              "steel": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "steel": 40,
+              "stone": 50
+            },
+            "production": {
+              "steel": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Bridge": {
+        "locales": {
+          "rus": "Мост"
+        },
+        "request_land_types": [
+          "Mountain",
+          "River",
+          "Swamp"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "wood": 10,
+              "steel": 20,
+              "stone": 30
+            },
+            "production": {
+              "wood": 10,
+              "steel": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "wood": 20,
+              "steel": 30,
+              "stone": 40
+            },
+            "production": {
+              "wood": 20,
+              "steel": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "wood": 30,
+              "steel": 40,
+              "stone": 50
+            },
+            "production": {
+              "wood": 30,
+              "steel": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "wood": 40,
+              "steel": 50,
+              "stone": 60
+            },
+            "production": {
+              "wood": 40,
+              "steel": 40,
+              "stone": 40
+            }
+          }
+        }
+      },
+      "Beacon": {
+        "locales": {
+          "rus": "Маяк"
+        },
+        "request_land_types": [
+          "River"
+        ],
+        "levels": {
+          "0": {
+            "cost": {
+              "wood": 10,
+              "stone": 30
+            },
+            "production": {
+              "wood": 10,
+              "stone": 10
+            }
+          },
+          "1": {
+            "cost": {
+              "wood": 20,
+              "stone": 40
+            },
+            "production": {
+              "wood": 20,
+              "stone": 20
+            }
+          },
+          "2": {
+            "cost": {
+              "wood": 30,
+              "stone": 50
+            },
+            "production": {
+              "wood": 30,
+              "stone": 30
+            }
+          },
+          "3": {
+            "cost": {
+              "wood": 40,
+              "stone": 60
+            },
+            "production": {
+              "wood": 40,
+              "stone": 40
+            }
+          }
+        }
+      }
+    }
+  },
+  "resourses": {
+    "types": {
+      "wood": {
+        "cost": {
+          "gold": 5
+        }
+      },
+      "stone": {
+        "cost": {
+          "gold": 10
+        }
+      },
+      "steel": {
+        "cost": {
+          "gold": 15
+        }
+      }
+    }
+  }
+}
+
+
+
