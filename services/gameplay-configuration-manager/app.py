@@ -1,34 +1,27 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import json
-import os
 
 app = FastAPI()
 
 with open('config.json', 'r', encoding = 'utf-8') as f:
-    lands, buildings, resourсes = json.load(f)
+    config = json.load(f)
 
 @app.get("/config/{config_path:path}", summary='')
 async def read_config(config_path: str):
-    if config_path != None:
-        print(config_path.split("/"))
-        return {"config_path": config_path}
-    return JSONResponse(status_code=404, content={"message": "Item not found"})
+    try:
+        fetch_data = extract_config(config, config_path.split("/"))
+        return fetch_data
+    except KeyError:
+        return JSONResponse(status_code=404, content={"message": "Item not found"})
 
 
-#рекурсивная функция извлечет из конфига нужный кусок
-
-import pprint
-pprint.pprint(lands)
-pprint.pprint(buildings)
-pprint.pprint(resourсes)
-
-
-def walk_dict(d,depth=0):
-    for k,v in sorted(d.items(),key=lambda x: x[0]):
-        if isinstance(v, dict):
-            print ("  ")*depth + ("%s" % k)
-            walk_dict(v,depth+1)
+def extract_config(config_dict, hierarchy=[]):
+        if len(hierarchy)==0:
+            return config_dict
         else:
-            print ("  ")*depth + "%s %s" % (k, v)
+            key = hierarchy.pop(0)
+            return extract_config(config_dict[key], hierarchy)
+         
+  
 
