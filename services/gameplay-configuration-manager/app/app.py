@@ -1,11 +1,36 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from . import config
 import json
 
 app = FastAPI()
 
-with open('config.json', 'r', encoding = 'utf-8') as f:
+
+from fastapi import FastAPI, Depends
+from fastapi.responses import JSONResponse
+import logging
+from fastapi.logger import logger
+
+# setup logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    level=2,
+    format="%(levelname)-9s %(message)s"
+)
+
+# load config
+cfg: config.Config = config.load_config()
+
+logger.info(
+    'Service configuration loaded:\n' +
+    f'{cfg.json(by_alias=True, indent=4)}'
+)
+
+
+
+with open(cfg.config_path, 'r', encoding = 'utf-8') as f:
     config = json.load(f)
+
 
 @app.get("/config/{config_path:path}", summary='')
 async def read_config(config_path: str):
@@ -23,5 +48,3 @@ def extract_config(config_dict, hierarchy=[]):
             key = hierarchy.pop(0)
             return extract_config(config_dict[key], hierarchy)
          
-  
-

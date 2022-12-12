@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends
 from fastapi.responses import JSONResponse
-from .schemas.resource import Resource, ResourceIn
+from .schemas.resource_1 import Resource, ResourceIn
 from sqlalchemy.orm import Session
 from .database import DB_INITIALIZER
 from . import crud, config
