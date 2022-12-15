@@ -1,4 +1,4 @@
-from pydantic import BaseSettings, PostgresDsn, Field, FilePath
+from pydantic import BaseSettings, Field, FilePath
 
 class Config(BaseSettings):
     config_path: FilePath = Field(
@@ -13,3 +13,6 @@ class Config(BaseSettings):
 
 def load_config() -> Config:
     return Config()
+
+
+#переменная GAMEPLAY_SERVICE_ENTRYPOINT проверка уровней через ip 192.168.0.2:5000 (в файле config.py) 

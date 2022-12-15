@@ -14,3 +14,4 @@ class Config(BaseSettings):
 
 def load_config() -> Config:
     return Config()
+  

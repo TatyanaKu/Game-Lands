@@ -7,6 +7,7 @@ from . import crud, config
 import typing
 import logging
 from fastapi.logger import logger
+import requests
 
 # setup logging
 logger = logging.getLogger(__name__)
@@ -26,6 +27,10 @@ logger.info(
 # init database
 logger.info('Initializing database...')
 SessionLocal = DB_INITIALIZER.init_database(cfg.postgres_dsn)
+
+
+#запуск сервиса
+#r = requests.get('http://192.168.0.3:5003/config/building')
 
 
 app = FastAPI(
