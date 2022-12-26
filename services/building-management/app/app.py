@@ -1,3 +1,5 @@
+from html import entities
+from xml.dom.minidom import Entity
 from fastapi import FastAPI, Depends
 from fastapi.responses import JSONResponse
 from .schemas.building import Building, BuildingIn
@@ -8,6 +10,8 @@ import typing
 import logging
 from fastapi.logger import logger
 import requests
+import json
+
 
 # setup logging
 logger = logging.getLogger(__name__)
@@ -29,8 +33,9 @@ logger.info('Initializing database...')
 SessionLocal = DB_INITIALIZER.init_database(cfg.postgres_dsn)
 
 
-#запуск сервиса
-#r = requests.get('http://192.168.0.3:5003/config/building')
+# start
+res = requests.get('http://192.168.0.3:5003/config/building')
+validaterules = res.json()
 
 
 app = FastAPI(
@@ -51,9 +56,17 @@ def get_db():
     summary='Добавляет постройку в базу'
 )
 async def add_building(building: BuildingIn, db: Session = Depends(get_db)) -> Building :
+    try: 
+        check_buildings(building, validaterules, res)
+    except:
+        return JSONResponse(status_code=409, content={"message": "Building does not exist"})
     return crud.create_building(db=db, building=building)
-   
-
+    
+def check_buildings(building: BuildingIn):
+    all_types = res['buildings']['types'].keys()
+    if Entity in all_types:
+        res['buildings']['types'][Entity]['levels']
+            
 
 @app.get("/buildings", summary='Возвращает список построек', response_model=list[Building])
 async def get_building_list(
@@ -66,10 +79,18 @@ async def get_building_list(
 
 @app.put("/buildings/{buildingId}", summary='Обновляет информацию о постройке')
 async def update_building(buildingId: int, building: BuildingIn, db: Session = Depends(get_db)) -> Building :
+    try:
+        up_buildings(building, validaterules, res)
+    except:
+        return JSONResponse(status_code=409, content={"message": "Update not possible"})
     building = crud.update_building(db, buildingId, building)
     if building != None:
         return building
-    return JSONResponse(status_code=404, content={"message": "Item not found"})
+
+def up_buildings(building: BuildingIn, buildingId, levels):
+    all_types = res['buildings']['levels'].keys()
+    if levels in all_types <=3:
+        return levels + 1
 
 
 
