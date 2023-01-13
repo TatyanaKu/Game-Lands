@@ -34,7 +34,7 @@ SessionLocal = DB_INITIALIZER.init_database(cfg.postgres_dsn)
 
 
 # start
-res = requests.get('http://192.168.0.3:5003/config/building')
+res = requests.get('http://192.168.0.3:5003/config/buildings')
 validaterules = res.json()
 
 
@@ -57,15 +57,19 @@ def get_db():
 )
 async def add_building(building: BuildingIn, db: Session = Depends(get_db)) -> Building :
     try: 
-        check_buildings(building, validaterules, res)
-    except:
+        check_buildings(building, validaterules)
+    except Exception as exc:
+        logger.error(exc)
         return JSONResponse(status_code=409, content={"message": "Building does not exist"})
     return crud.create_building(db=db, building=building)
     
-def check_buildings(building: BuildingIn):
-    all_types = res['buildings']['types'].keys()
-    if Entity in all_types:
-        res['buildings']['types'][Entity]['levels']
+def check_buildings(building: BuildingIn, validaterules: dict):
+    all_types = validaterules['types'].keys()   
+    if building.type not in all_types:
+        raise Exception ("Тип здания не существует в конфигурации")
+    if building.level != 0:
+        raise Exception ("Уровень не соответствует конфигурации")
+
             
 
 @app.get("/buildings", summary='Возвращает список построек', response_model=list[Building])
@@ -80,18 +84,24 @@ async def get_building_list(
 @app.put("/buildings/{buildingId}", summary='Обновляет информацию о постройке')
 async def update_building(buildingId: int, building: BuildingIn, db: Session = Depends(get_db)) -> Building :
     try:
-        up_buildings(building, validaterules, res)
-    except:
+        up_buildings(building, validaterules)
+    except Exception as exc:
+        logger.error(exc)
         return JSONResponse(status_code=409, content={"message": "Update not possible"})
     building = crud.update_building(db, buildingId, building)
     if building != None:
         return building
 
-def up_buildings(building: BuildingIn, buildingId, levels):
-    all_types = res['buildings']['levels'].keys()
-    if levels in all_types <=3:
-        return levels + 1
-
+def up_buildings(building: BuildingIn, validaterules: dict):
+    new_level = building.level + 1
+    if new_level not in validaterules['levels']:
+      raise Exception ("Уровень здания не соответствует")
+    
+    #building.level += 1
+    # all_types = validaterules['types'].keys()
+    # if building.level in building:
+    #     return building.level + 1
+    # raise Exception ("Уровень здания не соответствует") 
 
 
 @app.delete("/buildings/{buildingId}", summary='Удаляет постройку из базы')

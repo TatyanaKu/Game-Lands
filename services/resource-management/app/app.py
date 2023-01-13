@@ -7,6 +7,7 @@ from . import crud, config
 import typing
 import logging
 from fastapi.logger import logger
+import requests
 
 # setup logging
 logger = logging.getLogger(__name__)
@@ -27,7 +28,9 @@ logger.info(
 logger.info('Initializing database...')
 SessionLocal = DB_INITIALIZER.init_database(cfg.postgres_dsn)
 
-
+# start
+res = requests.get('http://192.168.0.3:5002/config/resources')
+validaterules = res.json()
 
 app = FastAPI(
     version='0.0.1',
@@ -47,7 +50,18 @@ def get_db():
     summary='Добавляет ресурс в базу'
 )
 async def add_resource(resource: ResourceIn, db: Session = Depends(get_db)) -> Resource :
+    try: 
+        check_resources(resource, validaterules)
+    except Exception as exc:
+        logger.error(exc)
+        return JSONResponse(status_code=409, content={"message": "Resource does not exist"})
     return crud.create_resource(db=db, resource=resource)
+
+def check_resources(resource: ResourceIn, validaterules: dict):
+    all_types = validaterules['types'].keys()   
+    if resource.type not in all_types:
+        raise Exception ("Тип ресурса не существует в конфигурации")
+
 
 
 @app.get("/resources", summary='Возвращает список ресурсов', response_model=list[Resource])

@@ -7,6 +7,7 @@ from . import crud, config
 import typing
 import logging
 from fastapi.logger import logger
+import requests
 
 # setup logging
 logger = logging.getLogger(__name__)
@@ -27,7 +28,9 @@ logger.info(
 logger.info('Initializing database...')
 SessionLocal = DB_INITIALIZER.init_database(cfg.postgres_dsn)
 
-
+# start
+res = requests.get('http://192.168.0.3:5000/config/lands')
+validaterules = res.json()
 
 app = FastAPI(
     version='0.0.1',
@@ -47,7 +50,17 @@ def get_db():
     summary='Добавляет землю в базу'
 )
 async def add_land(land: LandIn, db: Session = Depends(get_db)) -> Land :
+    try: 
+        check_lands(land, validaterules)
+    except Exception as exc:
+        logger.error(exc)
+        return JSONResponse(status_code=409, content={"message": "Land does not exist"})
     return crud.create_land(db=db, land=land)
+
+def check_lands(land: LandIn, validaterules: dict):
+    all_types = validaterules['types'].keys()   
+    if land.type not in all_types:
+        raise Exception ("Тип земли не существует в конфигурации")
 
 
 @app.get("/lands", summary='Возвращает список земель', response_model=list[Land])
