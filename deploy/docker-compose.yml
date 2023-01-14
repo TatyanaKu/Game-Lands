@@ -66,4 +66,12 @@ services:
     - "5003:5003"
     environment:
       POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands  
+
+
+  resource-harvesting-service:
+    image: game-lands/resource-harvesting-service:0.0.2
+    ports:
+    - "5004:5004"
+    environment:
+      POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands     
  

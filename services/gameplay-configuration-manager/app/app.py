@@ -2,14 +2,11 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from . import config
 import json
-
-app = FastAPI()
-
-
 from fastapi import FastAPI, Depends
-from fastapi.responses import JSONResponse
 import logging
 from fastapi.logger import logger
+
+app = FastAPI()
 
 # setup logging
 logger = logging.getLogger(__name__)
@@ -25,7 +22,6 @@ logger.info(
     'Service configuration loaded:\n' +
     f'{cfg.json(by_alias=True, indent=4)}'
 )
-
 
 
 with open(cfg.config_path, 'r', encoding = 'utf-8') as f:
