@@ -95,3 +95,9 @@ async def get_land_info(landId: int, db: Session = Depends(get_db)) -> Land :
         return land
     return JSONResponse(status_code=404, content={"message": "Item not found"})
 
+
+@app.get("/lands/{landId}", summary='Возвращает список свободных земель', response_model=list[Land])
+async def get_free_lands(User, landId: int, db: Session = Depends(get_db)) -> Land :
+    crud.get_lands - User.lands
+    return lands
+

@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from typing import AsyncGenerator
 from fastapi import FastAPI, Depends
 
+
 Base = declarative_base()
 
 class User(SQLAlchemyBaseUserTableUUID, Base):

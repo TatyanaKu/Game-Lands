@@ -5,6 +5,7 @@ from typing import Optional
 class LandBase(BaseModel):
     name:str = Field(title='Название земли')
     description: Optional[str] = Field(title='Краткое описание земли')
+    land_type: str = Field()
     
     class Config:
         orm_mode = True
