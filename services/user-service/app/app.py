@@ -39,7 +39,6 @@ app.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
     prefix="/auth",
     tags=["auth"],
-    lands = [id],
 )
 app.include_router(
     fastapi_users.get_reset_password_router(),

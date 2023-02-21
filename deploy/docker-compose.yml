@@ -73,5 +73,13 @@ services:
     ports:
     - "5004:5004"
     environment:
-      POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands     
+      POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands    
+
+
+  user-service:
+    image: game-lands/user-service:0.0.2
+    ports:
+    - "5005:5005"
+    environment:
+      POSTGRES_DSN: postgresql+asyncpg://game-lands:game-lands@192.168.0.3:5432/game-lands      
  

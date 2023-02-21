@@ -1,6 +1,6 @@
 import json
 from shapely.geometry import shape
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, MetaData
 from sqlalchemy import Table, Column, Integer, String, MetaData
 from geoalchemy2 import Geometry
 
@@ -9,7 +9,7 @@ engine = create_engine('postgresql://game-lands:game-lands@192.168.0.3:5432/game
 
 
 metadata = MetaData()
-land_table = Table('land', metadata,
+land_table = Table('lands', metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String),
     Column('description', String),
@@ -18,6 +18,11 @@ land_table = Table('land', metadata,
 )    
 
 land_table.create(engine)
+
+
+engine = create_engine("postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands")
+meta = MetaData()
+meta.reflect(bind=engine)
 
 
 with open('polygon.geojson', 'r', encoding='utf-8') as f:
@@ -34,4 +39,3 @@ with open('polygon.geojson', 'r', encoding='utf-8') as f:
                                          geom='POLYGON((0 0,1 0,1 1,0 1,0 0))')
         str(ins)
 
-#INSERT INTO lake (name, geom) VALUES (:name, ST_GeomFromEWKT(:geom))
