@@ -32,3 +32,9 @@ uvicorn app:app --port 5001 --reload (запуск из папки resource-mana
 
 # Запуск сервиса управления постройками
 uvicorn app:app --port 5002 --reload (запуск из папки building-management)
+
+# Запуск всего проекта из корня (только под linux)
+
+```bash
+./run.sh
+```
