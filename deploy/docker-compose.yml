@@ -5,19 +5,19 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: C:\Users\Tatyana\Desktop\Game Lands\deploy\mongo\data
+      device: ${MONGO_VOLUME_PATH:-C:\Users\Tatyana\Desktop\Game Lands\deploy\mongo\data}
   postgresql-data:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: C:\Users\Tatyana\Desktop\Game Lands\deploy\postgresql\data
+      device: ${POSTGRES_VOLUME_PATH:-C:\Users\Tatyana\Desktop\Game Lands\deploy\postgresql\data}
 services:
   mongo:
     image: mongo:6.0
     volumes:
       - mongo-data:/data/db
-      - C:\Users\Tatyana\Desktop\Game Lands\deploy\mongo\init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+      - ${MONGO_INIT_PATH:-C:\Users\Tatyana\Desktop\Game Lands\deploy\mongo\init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js}
     ports:
       - "27017:27017"
       - "27018:27018"
@@ -41,7 +41,7 @@ services:
     ports:
     - "5000:5000"
     environment:
-      POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands
+      POSTGRES_DSN: postgresql://game-lands:game-lands@postgresql:5432/game-lands
 
 
   resource-management-serivce:
@@ -49,7 +49,7 @@ services:
     ports:
     - "5001:5001"
     environment:
-      POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands
+      POSTGRES_DSN: postgresql://game-lands:game-lands@postgresql:5432/game-lands
 
 
   building-management-serivce:
@@ -57,7 +57,7 @@ services:
     ports:
     - "5002:5002"
     environment:
-      POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands         
+      POSTGRES_DSN: postgresql://game-lands:game-lands@postgresql:5432/game-lands         
 
   
   gameplay-configuration-manager:
@@ -65,7 +65,7 @@ services:
     ports:
     - "5003:5003"
     environment:
-      POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands  
+      POSTGRES_DSN: postgresql://game-lands:game-lands@postgresql:5432/game-lands  
 
 
   resource-harvesting-service:
@@ -73,7 +73,7 @@ services:
     ports:
     - "5004:5004"
     environment:
-      POSTGRES_DSN: postgresql://game-lands:game-lands@192.168.0.3:5432/game-lands    
+      POSTGRES_DSN: postgresql://game-lands:game-lands@postgresql:5432/game-lands    
 
 
   user-service:
@@ -81,5 +81,5 @@ services:
     ports:
     - "5005:5005"
     environment:
-      POSTGRES_DSN: postgresql+asyncpg://game-lands:game-lands@192.168.0.3:5432/game-lands      
+      POSTGRES_DSN: postgresql+asyncpg://game-lands:game-lands@postgresql:5432/game-lands      
  
