@@ -1,0 +1,1 @@
+docker build -t game-lands/game-buildings-service:0.0.2 .

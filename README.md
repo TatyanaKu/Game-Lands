@@ -38,3 +38,9 @@ uvicorn app:app --port 5002 --reload (запуск из папки building-mana
 ```bash
 ./run.sh
 ```
+
+# Пересборка всех сервисов сразу (только под Linux)
+
+```bash
+./rebuild_services.sh
+```

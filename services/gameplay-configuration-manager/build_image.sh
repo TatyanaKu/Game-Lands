@@ -1,0 +1,1 @@
+docker build -t game-lands/gameplay-configuration-manager:0.0.2 .

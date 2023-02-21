@@ -1,0 +1,1 @@
+docker build -t game-lands/game-resources-service:0.0.2 .
